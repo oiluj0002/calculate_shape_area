@@ -1,20 +1,22 @@
 struct Vertices(u32, u32);
 
-struct Rectangle {
-    width: u32,
-    height: u32,
-}
-
 fn calculate_distance(Vertices(a, b): Vertices) -> u32 {
     let distance = a.abs_diff(b);
 
     return distance;
 }
 
-fn calculate_rectangle_area(Rectangle { width, height }: &Rectangle) -> u32 {
-    let area = width * height;
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
 
-    return area;
+impl Rectangle {
+    fn area(&self) -> u32 {
+        let area = self.width * self.height;
+
+        return area;
+    }
 }
 
 fn main() {
@@ -25,7 +27,7 @@ fn main() {
     let height = calculate_distance(pair2);
 
     let shape = Rectangle { width, height };
-    let area = calculate_rectangle_area(&shape);
+    let area = shape.area();
 
     println!(
         "Width = {:?}, Height = {:?}, Area = {:?}",
